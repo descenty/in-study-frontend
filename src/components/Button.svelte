@@ -3,6 +3,7 @@
 	export let primary = false;
 	export let backgroundColor: string | undefined = undefined;
 	export let size: 'small' | 'medium' | 'large' = 'medium';
+	export let type: 'button' | 'submit' | 'reset' = 'button';
 	export let label: string = '';
 	export let alignSelf: 'flex-start' | 'flex-end' | 'center' = 'center';
 	$: mode = primary ? 'primary' : 'secondary';
@@ -13,7 +14,7 @@
 		: '';
 </script>
 
-<button type="button" class={['storybook-button', size, mode].join(' ')} {style} on:click>
+<button {type} class={['storybook-button', size, mode].join(' ')} {style} on:click>
 	{label}
 </button>
 
