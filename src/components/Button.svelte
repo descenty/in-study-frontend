@@ -31,11 +31,17 @@
 		&.primary {
 			color: white;
 			background-color: var(--primary-color);
+			&:hover {
+				filter: brightness(1.3);
+			}
 		}
 		&.secondary {
 			color: #333;
-			background-color: transparent;
+			background-color: white;
 			box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+			&:hover {
+				filter: brightness(0.982);
+			}
 		}
 		&.small {
 			font-size: 12px;
@@ -48,9 +54,6 @@
 		&.large {
 			font-size: 16px;
 			padding: 12px 24px;
-		}
-		&:hover {
-			filter: brightness(1.3);
 		}
 	}
 </style>

@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import type { AxiosError } from 'axios';
+	import { login } from '../stores/UserStore';
 	import { axiosInstance, setAuthToken } from '../utils';
 	import Button from './Button.svelte';
 	import Input from './Input.svelte';
@@ -23,21 +25,14 @@
 		else if (password.length < 6) error = 'Пароль должен быть не менее 6 символов';
 		else error = '';
 	};
-	const login = async () => {
-		try {
-			const token = (
-				await axiosInstance.post<{ token: string }>('auth/login/', { email, password })
-			).data.token;
-			setAuthToken(token);
-		} catch (e) {
-			const axiosError = e as AxiosError;
-			error = axiosError.response?.data.message;
+	const handleSubmit = async () => {
+		validateForm();
+		if (!error) {
+			const result = await login(email, password);
+			if (!result.success) error = result.message ? result.message : 'Что-то пошло не так';
+			else goto('/');
 		}
 	};
-	const handleSubmit = () => {
-		validateForm();
-		if (!error) login();
-	}
 </script>
 
 <form on:submit={() => validateForm()} class="login-form">

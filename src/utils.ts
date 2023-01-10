@@ -15,10 +15,14 @@ const updateAxiosInstance = () => {
   }
 }
 
-export const setAuthToken = (token: string) => {
-  localStorage.setItem('token', token);
-  updateAxiosInstance();
-  updateUserData()
+export const setAuthToken = (token?: string) => {
+  if (!token)
+    localStorage.removeItem('token');
+  else {
+    localStorage.setItem('token', token)
+    updateAxiosInstance();
+    updateUserData()
+  }
 }
 
 updateAxiosInstance()

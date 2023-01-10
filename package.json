@@ -56,6 +56,9 @@
   },
   "type": "module",
   "dependencies": {
-    "axios": "^1.2.2"
+    "@codemirror/lang-python": "^6.1.1",
+    "axios": "^1.2.2",
+    "codemirror": "^6.0.1",
+    "svelte-codemirror-editor": "^1.1.0"
   }
 }
