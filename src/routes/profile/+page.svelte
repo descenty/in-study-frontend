@@ -1,5 +1,5 @@
 <script>
-	import Button from '../../components/Button.svelte';
+	import Button from '../../lib/Button.svelte';
 	import { logout, user } from '../../stores/UserStore';
 </script>
 

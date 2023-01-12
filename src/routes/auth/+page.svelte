@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Button from '../../components/Button.svelte';
-	import Input from '../../components/Input.svelte';
-	import LoginForm from '../../components/LoginForm.svelte';
+	import Button from '../../lib/Button.svelte';
+	import Input from '../../lib/Input.svelte';
+	import LoginForm from '../../lib/LoginForm.svelte';
 </script>
 
 <div class="auth">

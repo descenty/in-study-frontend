@@ -1,8 +1,8 @@
 <script>
-	import Button from '../components/Button.svelte';
+	import Button from '../lib/Button.svelte';
 	import '../app.postcss';
-	import Header from '../components/Header.svelte';
 	import './styles.css';
+	import Header from '../lib/Header.svelte';
 </script>
 
 <div class="app">

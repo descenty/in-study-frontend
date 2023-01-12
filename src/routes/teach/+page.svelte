@@ -6,7 +6,7 @@
 	import CodeMirror from 'svelte-codemirror-editor';
 	import { python } from '@codemirror/lang-python';
 	import axios from 'axios';
-	import Button from '../../components/Button.svelte';
+	import Button from '../../lib/Button.svelte';
 
 	let createdCourses: ICourse[] = [];
 	onMount(async () => {

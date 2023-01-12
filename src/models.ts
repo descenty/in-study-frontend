@@ -32,3 +32,16 @@ export interface ICourse {
   users: IUser[];
   reviews: IReview[];
 }
+
+
+export interface IShortCourse {
+  id: number;
+  title: string;
+  price: number;
+  rating: number;
+  image: string;
+  creator: {
+    id: number,
+    name: string
+  }
+}

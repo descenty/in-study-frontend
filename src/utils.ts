@@ -1,9 +1,11 @@
 import axios from "axios";
 import { browser } from "$app/environment"
 import { updateUserData } from "./stores/UserStore";
+
+export const baseURL = 'http://localhost:3000/api/'
 export const axiosInstance = axios.create(
   {
-    baseURL: 'http://localhost:3000/api/'
+    baseURL
   }
 )
 

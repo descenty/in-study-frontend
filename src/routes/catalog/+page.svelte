@@ -1,43 +1,32 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { axiosInstance } from '../../utils';
-	import type { ICourse } from '../../models';
-
-	let courses: ICourse[] = [];
-	onMount(async () => {
-		courses = (await axiosInstance.get<ICourse[]>('courses')).data;
-	});
+	import type { PageData } from './$types';
+	import { fade } from 'svelte/transition'
+	export let data: PageData;
+	const { courses } = data;
 </script>
 
 <svelte:head>
-  <title>Каталог</title>
+	<title>Каталог</title>
 </svelte:head>
 
 <h2>Каталог курсов</h2>
 <section class="courses">
 	{#each courses as course}
 		<div class="course">
-      <img src={course.image} alt="course" />
-			<h3>{course.title}</h3>
-			<p>{course.description}</p>
+			<img src={course.image} alt="course" />
+			<div class="info">
+				<h3>{course.title}</h3>
+				<span class="creator">{course.creator.name}</span>
+			</div>
+			<span class="price"
+				>{course.price.toLocaleString('ru-RU', {
+					style: 'currency',
+					currency: 'RUB'
+				})}</span
+			>
 		</div>
 	{/each}
 </section>
 
-<style scoped lang="postcss">
-  h2 {
-    margin-block: 1em;
-    font-size: 28px;
-  }
-	.courses {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1em;
-		.course {
-			padding: 10px;
-      background: white;
-      border-radius: 10px;
-      height: 200px;
-		}
-	}
+<style src="./styles.postcss">
 </style>
