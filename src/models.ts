@@ -38,7 +38,8 @@ export interface ICourse {
   creator: {
     id: number;
     name: string;
-  }
+  };
+  enrolled?: boolean;
 }
 
 
@@ -52,4 +53,5 @@ export interface IShortCourse {
     id: number,
     name: string
   }
+  enrolled?: boolean;
 }

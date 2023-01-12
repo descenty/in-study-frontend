@@ -1,8 +1,15 @@
 <script lang="ts">
+	import Button from '$lib/Button.svelte';
+	import { axiosInstance } from '../../../utils';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-	const { course } = data;
+	let { course } = data;
+
+	const enroll = async () => {
+		await axiosInstance.get(`/courses/${course.id}/enroll`);
+		course = { ...course, enrolled: true };
+	};
 </script>
 
 <div class="course">
@@ -20,6 +27,11 @@
 		{/each}
 		<div />
 	</div>
+	{#if course.enrolled}
+		<span>Вы уже поступили на этот курс</span>
+	{:else}
+		<Button primary label="Поступить на курс" on:click={async () => await enroll()} />
+	{/if}
 	<h4>Преподаватель</h4>
 	<span>{course.creator.name}</span>
 </div>

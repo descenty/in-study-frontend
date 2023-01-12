@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import CourseBlock from '../../lib/CourseBlock/CourseBlock.svelte';
+	import CourseBlock from '$lib/CourseBlock/CourseBlock.svelte';
 	export let data: PageData;
 	const { courses } = data;
 </script>

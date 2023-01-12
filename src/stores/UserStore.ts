@@ -2,7 +2,8 @@ import type { IUser } from "../models";
 import { writable } from "svelte/store";
 import { axiosInstance, setAuthToken } from "../utils";
 import { goto } from "$app/navigation";
-export const user = writable<IUser>(undefined);
+import type { AxiosError } from "axios";
+export const user = writable<IUser | undefined>(undefined);
 
 export const login = async (email: string, password: string): Promise<{ success: boolean, message?: string }> => {
   try {
@@ -12,8 +13,8 @@ export const login = async (email: string, password: string): Promise<{ success:
     setAuthToken(token);
     return { success: true };
   } catch (e) {
-    const axiosError = e as AxiosError;
-    return { success: false, message: axiosError.response?.data.message }
+    const axiosError = e as any;
+    return { success: false, message: axiosError.response?.data?.message }
   }
 };
 

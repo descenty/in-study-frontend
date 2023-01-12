@@ -6,11 +6,11 @@
 	import CodeMirror from 'svelte-codemirror-editor';
 	import { python } from '@codemirror/lang-python';
 	import axios from 'axios';
-	import Button from '../../lib/Button.svelte';
+	import Button from '$lib/Button.svelte';
 
 	let createdCourses: ICourse[] = [];
 	onMount(async () => {
-		createdCourses = (await axiosInstance.get<ICourse[]>(`course?creatorId=${$user.id}`)).data;
+		createdCourses = (await axiosInstance.get<ICourse[]>(`course?creatorId=${$user?.id}`)).data;
 	});
 	let code = '';
 	let output = '';
@@ -50,7 +50,7 @@
 			color: white;
 			width: 500px;
 			padding: 4px;
-			padding-inline: 8px
+			padding-inline: 8px;
 		}
 	}
 </style>
