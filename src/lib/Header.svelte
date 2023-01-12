@@ -15,7 +15,7 @@
 	<nav>
 		<ul>
 			<li aria-current={$page.url.pathname === '/catalog'}>
-				<a href="/catalog">Каталог</a>
+				<a href="/courses">Каталог</a>
 			</li>
 			<li aria-current={$page.url.pathname === '/learn'}>
 				<a href="/learn">Моё обучение</a>

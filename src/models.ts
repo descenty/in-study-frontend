@@ -24,13 +24,21 @@ export interface ICourse {
   id: number;
   title: string;
   description: string;
-  image: string;
   price: number;
   rating: number;
   createdAt: Date;
   updatedAt: Date;
-  users: IUser[];
-  reviews: IReview[];
+  image: string;
+  lessons: {
+    id: number;
+    title: string;
+    createdAt: true;
+    updatedAt: true;
+  }[];
+  creator: {
+    id: number;
+    name: string;
+  }
 }
 
 
