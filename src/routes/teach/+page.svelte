@@ -39,7 +39,7 @@
 	<textarea bind:value={output} placeholder="Вывод" rows="10" cols="50" readonly />
 </section>
 
-<style lang="postcss">
+<style lang="scss">
 	.interpeter {
 		display: flex;
 		flex-direction: column;

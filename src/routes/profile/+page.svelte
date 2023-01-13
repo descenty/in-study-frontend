@@ -8,7 +8,7 @@
 	<Button on:click={() => logout()} label="Выйти" />
 </section>
 
-<style lang="postcss">
+<style lang="scss">
 	.profile {
 		display: flex;
 		flex-direction: column;

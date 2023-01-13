@@ -16,5 +16,14 @@
 	{/each}
 </section>
 
-<style src="./styles.postcss">
+<style lang="scss">
+	h2 {
+		margin-block: 1em;
+		font-size: 28px;
+	}
+	.courses {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1em;
+	}
 </style>

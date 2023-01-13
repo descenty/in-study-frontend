@@ -28,7 +28,7 @@
 		<div />
 	</div>
 	{#if course.enrolled}
-		<span>Вы уже поступили на этот курс</span>
+		<span class="enrolled">Вы уже поступили на этот курс</span>
 	{:else}
 		<Button primary label="Поступить на курс" on:click={async () => await enroll()} />
 	{/if}
@@ -36,5 +36,20 @@
 	<span>{course.creator.name}</span>
 </div>
 
-<style src="./styles.postcss">
+<style lang="scss">
+	.course {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+		padding: 1em;
+		/* img {
+			height: 300px;
+			object-fit: scale-down;
+			display: flex;
+			background: red;
+		} */
+		.enrolled {
+			color: green;
+		}
+	}
 </style>

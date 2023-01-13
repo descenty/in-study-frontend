@@ -16,7 +16,8 @@
 		({$page.status})
 	</h2>
 </div>
-<style lang="postcss">
+
+<style lang="scss">
 	.error {
 		display: flex;
 		justify-content: center;

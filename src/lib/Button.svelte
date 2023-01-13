@@ -18,7 +18,7 @@
 	{label}
 </button>
 
-<style lang="postcss">
+<style lang="scss">
 	.storybook-button {
 		font-family: 'Fira Mono', monospace;
 		font-weight: 500;

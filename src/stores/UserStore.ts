@@ -3,6 +3,7 @@ import { writable } from "svelte/store";
 import { axiosInstance, setAuthToken } from "../utils";
 import { goto } from "$app/navigation";
 import type { AxiosError } from "axios";
+import { browser } from "$app/environment";
 export const user = writable<IUser | undefined>(undefined);
 
 export const login = async (email: string, password: string): Promise<{ success: boolean, message?: string }> => {
@@ -32,4 +33,4 @@ export const updateUserData = async () => {
     console.log('failed to login')
   }
 }
-updateUserData()
+browser && updateUserData()
