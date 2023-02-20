@@ -12,7 +12,7 @@
 	<meta name="description" content="About this app" />
 </svelte:head>
 
-<h2>Каталог курсов</h2>
+<h2>Моё обучение</h2>
 <section class="courses">
 	{#each courses as course}
 		<CourseRow {course} />
@@ -28,6 +28,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 2em;
-		width: 100%;
+		width: 500px;
 	}
 </style>

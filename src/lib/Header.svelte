@@ -73,7 +73,7 @@
 	header {
 		display: flex;
 		justify-content: space-between;
-		height: 70px;
+		height: 75px;
 		align-items: center;
 		background: rgb(245, 245, 245);
 	}
@@ -130,6 +130,9 @@
 		&:hover {
 			color: $primary-color;
 		}
+		.icon {
+			color: red !important;
+		}
 	}
 
 	li[aria-current='true'] {
@@ -145,6 +148,7 @@
 			border: var(--size) solid transparent;
 			border-top: var(--size) solid $primary-color;
 		}
+		transform: scale(1.05);
 	}
 
 	nav a,

@@ -5,6 +5,8 @@
 	import CourseBlock from '$lib/CourseBlock/CourseBlock.svelte';
 	import type { ICourse } from '../../models';
 	import type { PageData } from './$types';
+	import CourseRowCreator from '$lib/CourseRowCreator.svelte';
+	import Button from '$lib/Button.svelte';
 	export let data: PageData;
 	const { courses } = data;
 </script>
@@ -12,13 +14,16 @@
 <svelte:head>
 	<title>Преподавание</title>
 </svelte:head>
+<Button alignSelf="flex-start" primary label="Создать курс" />
 <h2>Мои Курсы</h2>
 <section class="courses">
 	{#if courses.length === 0}
 		<p>У вас нет курсов</p>
 	{:else}
 		{#each courses as course}
-			<CourseBlock {course} />
+			<a href={`courses/${course.id}/info`}>
+				<CourseRowCreator {course} />
+			</a>
 		{/each}
 	{/if}
 </section>
@@ -29,8 +34,9 @@
 		font-size: 28px;
 	}
 	.courses {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		display: flex;
+		flex-direction: column;
 		gap: 1em;
+		width: 600px;
 	}
 </style>

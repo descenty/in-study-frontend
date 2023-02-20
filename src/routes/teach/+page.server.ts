@@ -1,12 +1,13 @@
-import type { ICourse } from '../../models';
+import type { ICourse, IShortCourse } from '../../models';
 import { baseURL } from '../../utils';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ cookies, fetch }) => {
+	console.log(cookies.get('token'));
 	const response = await fetch(baseURL + 'courses/creator', {
 		headers: {
-			authorization: 'Bearer ' + cookies.get('token')
+			Authorization: 'Bearer ' + cookies.get('token')
 		}
 	});
-	return { courses: (await response.json()) as ICourse[] };
+	return { courses: (await response.json()) as IShortCourse[] };
 }) satisfies PageServerLoad;

@@ -1,20 +1,32 @@
 <script lang="ts">
 	import './styles.scss';
+	import variables from './cssvariables';
+	import { css, cx } from '@emotion/css';
 	export let primary = false;
 	export let backgroundColor: string | undefined = undefined;
+	export let shadow = true;
+	export let hoverColor = false;
 	export let size: 'small' | 'medium' | 'large' = 'medium';
 	export let type: 'button' | 'submit' | 'reset' = 'button';
 	export let label: string = '';
 	export let alignSelf: 'flex-start' | 'flex-end' | 'center' = 'center';
 	$: mode = primary ? 'primary' : 'secondary';
-	$: style = backgroundColor
-		? `background-color: ${backgroundColor};`
-		: '' + alignSelf
-		? `align-self: ${alignSelf};`
-		: '';
+	// $: style = backgroundColor
+	// 	? `background-color: ${backgroundColor};`
+	// 	: '' + alignSelf
+	// 	? `align-self: ${alignSelf};`
+	// 	: '';
+	$: style = css({
+		backgroundColor: backgroundColor,
+		alignSelf: alignSelf,
+		boxShadow: !primary && shadow ? 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset' : '',
+		':hover': {
+			color: hoverColor ? variables.primaryColor + ' !important' : ''
+		}
+	});
 </script>
 
-<button {type} class={['base-button', size, mode].join(' ')} {style} on:click>
+<button {type} class={cx('base-button', size, mode, style)} on:click>
 	{label}
 </button>
 
@@ -39,7 +51,6 @@
 		&.secondary {
 			color: #333;
 			background-color: white;
-			box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
 			&:hover {
 				filter: brightness(0.982);
 			}
