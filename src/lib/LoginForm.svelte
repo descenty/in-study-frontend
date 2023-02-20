@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
+	import './styles.scss';
+	import { goto, invalidate, invalidateAll } from '$app/navigation';
 	import type { AxiosError } from 'axios';
 	import { login } from '../stores/UserStore';
 	import { axiosInstance, setAuthToken } from '../utils';
@@ -25,17 +26,20 @@
 		else if (password.length < 6) error = 'Пароль должен быть не менее 6 символов';
 		else error = '';
 	};
-	const handleSubmit = async () => {
+	const handleSubmit = async (e: any) => {
+		e.preventDefault();
 		validateForm();
 		if (!error) {
 			const result = await login(email, password);
 			if (!result.success) error = result.message ? result.message : 'Что-то пошло не так';
-			else goto('/');
+			else {
+				location.href = '/';
+			}
 		}
 	};
 </script>
 
-<form on:submit={() => validateForm()} class="login-form">
+<form method="POST" class="login-form">
 	<div class="auth-type">
 		<h4 aria-current={authType === 'login'} on:mouseup={() => (authType = 'login')}>Вход</h4>
 		<h4 aria-current={authType === 'register'} on:mouseup={() => (authType = 'register')}>
@@ -50,7 +54,7 @@
 	<Button type="submit" primary label="Войти" on:click={handleSubmit} />
 </form>
 
-<style lang="postcss">
+<style lang="scss">
 	.login-form {
 		display: flex;
 		flex-direction: column;

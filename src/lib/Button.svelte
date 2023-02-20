@@ -1,5 +1,5 @@
 <script lang="ts">
-	import './styles.postcss';
+	import './styles.scss';
 	export let primary = false;
 	export let backgroundColor: string | undefined = undefined;
 	export let size: 'small' | 'medium' | 'large' = 'medium';
@@ -14,13 +14,13 @@
 		: '';
 </script>
 
-<button {type} class={['storybook-button', size, mode].join(' ')} {style} on:click>
+<button {type} class={['base-button', size, mode].join(' ')} {style} on:click>
 	{label}
 </button>
 
 <style lang="scss">
-	.storybook-button {
-		font-family: 'Fira Mono', monospace;
+	@import './styles.scss';
+	.base-button {
 		font-weight: 500;
 		border: none;
 		border-radius: 8px;
@@ -30,9 +30,10 @@
 		width: max-content;
 		&.primary {
 			color: white;
-			background-color: var(--primary-color);
+			background-color: $primary-color;
+			transition: 0.2s;
 			&:hover {
-				filter: brightness(1.3);
+				filter: brightness(1.1);
 			}
 		}
 		&.secondary {

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import './styles.scss';
 	import { spring } from 'svelte/motion';
 
 	let count = 0;

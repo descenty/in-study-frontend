@@ -1,4 +1,5 @@
 <script lang="ts">
+	import './styles.scss';
 	import type { HTMLInputTypeAttribute } from 'react';
 	export let type: HTMLInputTypeAttribute = 'text';
 	export let name = '';
@@ -13,12 +14,12 @@
 		{type}
 		{name}
 		id={name}
-		on:input={(e) => (value = e.target.value)}
+		on:input={(e) => (value = e.target?.value)}
 		placeholder="..."
 	/>
 </div>
 
-<style lang="postcss">
+<style lang="scss">
 	.input-block {
 		display: flex;
 		flex-direction: column;
@@ -41,6 +42,11 @@
 				outline: none;
 				background: #f6f6f6;
 			}
+		}
+		// disable autocomplete background color
+		:-webkit-autofill {
+			background-color: transparent !important;
+			box-shadow: 0 0 0 50px white inset;
 		}
 	}
 </style>

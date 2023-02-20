@@ -1,12 +1,19 @@
-<script>
+<script lang="ts">
+	import '@fontsource/nunito/200.css';
+	import '@fontsource/nunito/300.css';
+	import '@fontsource/nunito/400.css';
+	import '@fontsource/nunito/500.css';
+	import '@fontsource/nunito/600.css';
+	import '@fontsource/nunito/700.css';
 	import Button from '../lib/Button.svelte';
-	import '../app.postcss';
-	import './styles.css';
 	import Header from '../lib/Header.svelte';
+	import type { LayoutData } from './$types';
+	export let data: LayoutData;
+	export let { authorized } = data;
 </script>
 
 <div class="app">
-	<Header />
+	<Header {authorized} />
 	<main>
 		<slot />
 	</main>

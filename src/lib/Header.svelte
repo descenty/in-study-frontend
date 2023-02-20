@@ -1,81 +1,110 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
 	import { user } from '../stores/UserStore';
+	import favicon from '$lib/images/favicon.png';
+	import AppStoreOutline from '~icons/mdi/apps';
+	import LearnOutline from '~icons/mdi/learn-outline';
+	import LightbulbOnOutline from '~icons/mdi/lightbulb-on-outline';
+	import UserOutline from '~icons/mdi/account-circle-outline';
+	import type { ComponentType } from 'svelte';
+	export let authorized = false;
+	interface ILink {
+		href: string;
+		label: string;
+		icon: ComponentType;
+	}
+	const publicLinks: ILink[] = [
+		{
+			href: '/courses',
+			label: 'Каталог',
+			icon: AppStoreOutline
+		}
+	];
+	const authenticatedLinks: ILink[] = [
+		{
+			href: '/learn',
+			label: 'Моё обучение',
+			icon: LearnOutline
+		},
+		{
+			href: '/teach',
+			label: 'Преподавание',
+			icon: LightbulbOnOutline
+		},
+		{
+			href: '/profile',
+			label: 'Профиль',
+			icon: UserOutline
+		}
+	];
 </script>
 
 <header>
-	<div class="corner">
-		<a href="/">
-			<img src={logo} alt="SvelteKit" />
-			<span>In Study</span>
-		</a>
-	</div>
+	<a class="corner" href="/">
+		<img src={favicon} alt="SvelteKit" />
+		<!-- <span class="app-title">{PUBLIC_TITLE}</span> -->
+	</a>
 	<nav>
 		<ul>
-			<li aria-current={$page.url.pathname === '/catalog'}>
-				<a href="/courses">Каталог</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/learn'}>
-				<a href="/learn">Моё обучение</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/teach'}>
-				<a href="/teach">Преподавание</a>
-			</li>
-			{#if !$user}
+			{#each publicLinks as link}
+				<li aria-current={$page.url.pathname === link.href}>
+					<svelte:component this={link.icon} />
+					<a href={link.href}>{link.label}</a>
+				</li>
+			{/each}
+			{#if authorized}
+				{#each authenticatedLinks as link}
+					<li aria-current={$page.url.pathname === link.href}>
+						<svelte:component this={link.icon} />
+						<a href={link.href}>{link.label}</a>
+					</li>
+				{/each}
+			{:else}
 				<li aria-current={$page.url.pathname === '/auth'}>
 					<a href="/auth">Войти</a>
-				</li>
-			{:else}
-				<li aria-current={$page.url.pathname === '/profile'}>
-					<a href="/profile">{$user.email}</a>
 				</li>
 			{/if}
 		</ul>
 	</nav>
-	<div class="corner">
-		<a href="https://github.com/descenty/in-study-frontend">
-			<img src={github} alt="GitHub" />
-		</a>
-	</div>
 </header>
 
 <style lang="scss">
+	@import 'styles.scss';
 	header {
 		display: flex;
 		justify-content: space-between;
-		height: 60px;
+		height: 70px;
 		align-items: center;
+		background: rgb(245, 245, 245);
 	}
 
 	.corner {
-		width: 8em;
-		height: 3em;
-	}
-
-	.corner a {
+		margin-inline: 3em;
+		width: 56px;
+		height: 56px;
 		display: flex;
-		align-items: center;
 		justify-content: center;
-		width: 100%;
-		height: 100%;
-		transition: 0.3s;
+		align-items: center;
+		transition: 1s;
+		border-radius: 50%;
 		&:hover {
-			color: var(--primary-color);
+			color: $primary-color;
+			box-shadow: 0 5px 15px rgba($primary-color, 0.5);
+			img {
+				transform: rotate(-10deg) scale(1.2);
+			}
 		}
-	}
-
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
+		img {
+			width: 100%;
+			height: 100%;
+			transition: 1s;
+			object-fit: contain;
+		}
 	}
 
 	nav {
 		display: flex;
-		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
+		width: 100%;
 		height: 100%;
 	}
 	ul {
@@ -86,30 +115,36 @@
 		justify-content: center;
 		align-items: center;
 		list-style: none;
-		background: var(--background);
 		background-size: contain;
 		gap: 2em;
+		row-gap: 0em;
 	}
 
 	li {
 		position: relative;
+		display: flex;
+		align-items: center;
 		height: 100%;
 		transition: 0.3s;
+		cursor: pointer;
 		&:hover {
-			color: var(--primary-color);
+			color: $primary-color;
 		}
 	}
 
-	li[aria-current='true']::before {
-		--size: 8px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0px;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--primary-color);
+	li[aria-current='true'] {
+		color: $primary-color;
+		::before {
+			--size: 8px;
+			content: '';
+			width: 0;
+			height: 0;
+			position: absolute;
+			top: 0px;
+			left: calc(50% - var(--size));
+			border: var(--size) solid transparent;
+			border-top: var(--size) solid $primary-color;
+		}
 	}
 
 	nav a,
@@ -119,12 +154,11 @@
 		align-items: center;
 		padding: 0 0.5rem;
 		color: var(--color-text);
-		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		text-decoration: none;
-		transition: color 0.2s linear;
+		letter-spacing: 0.5px;
+		font-weight: 500;
+		font-size: 1.05rem;
+		text-transform: capitalize;
+		transition: color 0.05s linear;
 	}
 
 	a:hover {
