@@ -29,13 +29,18 @@
 		border-radius: 10px;
 		border: 1px solid rgb(244, 244, 244);
 		gap: 1em;
+		padding: 1em;
 		height: 80px;
 		width: 100%;
 		cursor: pointer;
 		transition: box-shadow 0.2s ease-in-out;
 		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+		* {
+			padding-inline: 0.2em;
+		}
 		img {
-			height: 65%;
+			height: 100%;
+			width: 100px;
 			object-fit: scale-down;
 		}
 		h3 {
@@ -43,6 +48,14 @@
 		}
 		&:hover {
 			box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+		}
+	}
+	@media (max-width: 500px) {
+		.course {
+			flex-direction: column;
+			align-items: flex-start;
+			height: 250px;
+			padding: 1.5em;
 		}
 	}
 </style>

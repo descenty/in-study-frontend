@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import CourseBlock from '$lib/CourseBlock/CourseBlock.svelte';
+	import CourseBlock from '$lib/CourseBlock.svelte';
 	export let data: PageData;
 	const { courses } = data;
 </script>
@@ -25,5 +25,15 @@
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 1em;
+	}
+	@media (max-width: 900px) {
+		.courses {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+	@media (max-width: 600px) {
+		.courses {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>

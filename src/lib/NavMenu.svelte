@@ -22,13 +22,11 @@
 		display: flex;
 		flex-direction: column;
 		width: 200px;
-		text-align: center;
 		gap: 1em;
 		a {
 			height: 40px;
 			display: flex;
 			align-items: center;
-			padding-inline: 1em;
 			&[aria-current='true'] {
 				color: $primary-color;
 			}

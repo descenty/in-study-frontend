@@ -31,7 +31,6 @@ export const updateUserData = async () => {
 	try {
 		user.set((await axiosInstance.get<IUser>('auth/')).data);
 	} catch (e) {
-		console.log('failed to login');
 		setAuthToken(undefined);
 	}
 };

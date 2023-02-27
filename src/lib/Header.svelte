@@ -40,7 +40,7 @@
 </script>
 
 <header>
-	<a class="corner" href="/">
+	<a class="corner" href={authorized ? 'learn' : '/'}>
 		<img src={favicon} alt="SvelteKit" />
 		<!-- <span class="app-title">{PUBLIC_TITLE}</span> -->
 	</a>
@@ -48,15 +48,19 @@
 		<ul>
 			{#each publicLinks as link}
 				<li aria-current={$page.url.pathname === link.href}>
-					<svelte:component this={link.icon} />
-					<a href={link.href}>{link.label}</a>
+					<a href={link.href}>
+						<svelte:component this={link.icon} />
+						<span>{link.label}</span>
+					</a>
 				</li>
 			{/each}
 			{#if authorized}
 				{#each authenticatedLinks as link}
 					<li aria-current={$page.url.pathname === link.href}>
-						<svelte:component this={link.icon} />
-						<a href={link.href}>{link.label}</a>
+						<a href={link.href}>
+							<svelte:component this={link.icon} />
+							<span>{link.label}</span>
+						</a>
 					</li>
 				{/each}
 			{:else}
@@ -75,7 +79,7 @@
 		justify-content: space-between;
 		height: 75px;
 		align-items: center;
-		background: rgb(245, 245, 245);
+		background: whitesmoke;
 	}
 
 	.corner {
@@ -124,9 +128,10 @@
 		position: relative;
 		display: flex;
 		align-items: center;
-		height: 100%;
+		height: 95%;
 		transition: 0.3s;
 		cursor: pointer;
+		color: rgb(55, 55, 55);
 		&:hover {
 			color: $primary-color;
 		}
@@ -157,15 +162,48 @@
 		height: 100%;
 		align-items: center;
 		padding: 0 0.5rem;
-		color: var(--color-text);
 		letter-spacing: 0.5px;
 		font-weight: 500;
 		font-size: 1.05rem;
 		text-transform: capitalize;
 		transition: color 0.05s linear;
+		font-weight: bold;
 	}
 
 	a:hover {
-		color: var(--color-theme-1);
+		color: $primary-color;
+	}
+
+	@media (max-width: 865px) {
+		ul {
+			gap: 3em;
+			li {
+				::before {
+					display: none;
+				}
+				a {
+					font-size: 1.6em;
+				}
+				span {
+					display: none;
+				}
+			}
+		}
+	}
+	@media (max-width: 500px) {
+		header {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+		}
+		.corner {
+			display: none;
+		}
+		nav {
+			justify-content: center;
+		}
+		ul {
+			gap: 2.5em;
+		}
 	}
 </style>

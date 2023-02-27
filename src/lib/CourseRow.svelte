@@ -22,6 +22,7 @@
 		gap: 1em;
 		height: 80px;
 		width: 100%;
+		border-radius: 10px;
 		padding: 0.5em;
 		cursor: pointer;
 		transition: box-shadow 0.2s ease-in-out;

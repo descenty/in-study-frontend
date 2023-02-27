@@ -2,7 +2,7 @@
 	import { axiosInstance } from '../../utils';
 	import { onMount } from 'svelte';
 	import { user } from '../../stores/UserStore';
-	import CourseBlock from '$lib/CourseBlock/CourseBlock.svelte';
+	import CourseBlock from '$lib/CourseBlock.svelte';
 	import type { ICourse } from '../../models';
 	import type { PageData } from './$types';
 	import CourseRowCreator from '$lib/CourseRowCreator.svelte';
@@ -38,5 +38,6 @@
 		flex-direction: column;
 		gap: 1em;
 		width: 600px;
+		max-width: 100%;
 	}
 </style>

@@ -40,6 +40,7 @@
 		display: inline-block;
 		line-height: 0.8;
 		width: max-content;
+		transition: 0.3s;
 		&.primary {
 			color: white;
 			background-color: $primary-color;
@@ -50,7 +51,7 @@
 		}
 		&.secondary {
 			color: #333;
-			background-color: white;
+			background-color: rgb(249, 249, 249);
 			&:hover {
 				filter: brightness(0.982);
 			}

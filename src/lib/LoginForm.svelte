@@ -18,7 +18,6 @@
 	let password = '';
 	let error = '';
 	const validateForm = () => {
-		console.log('hy');
 		if (!email || !password) {
 			error = 'Заполните все поля';
 		} else if (!email.match(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/))

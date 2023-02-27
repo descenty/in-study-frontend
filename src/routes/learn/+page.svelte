@@ -15,7 +15,9 @@
 <h2>Моё обучение</h2>
 <section class="courses">
 	{#each courses as course}
-		<CourseRow {course} />
+		<a href={`courses/${course.id}/syllabus`}>
+			<CourseRow {course} />
+		</a>
 	{/each}
 </section>
 
@@ -29,5 +31,6 @@
 		flex-direction: column;
 		gap: 2em;
 		width: 500px;
+		max-width: 100%;
 	}
 </style>

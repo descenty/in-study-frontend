@@ -4,7 +4,6 @@ import type { LayoutServerLoad } from './$types';
 
 export const load = (async ({ cookies, params, fetch }) => {
 	const fetchCourse = async () => {
-    console.log(cookies.get('token'))
 		const response = await fetch(baseURL + 'courses/' + params.id, {
 			headers: {
 				Authorization: 'Bearer ' + cookies.get('token')
