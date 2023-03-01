@@ -1,6 +1,7 @@
-<script>
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+<script lang="ts">
+	import type { PageData } from './$types';
+	export let data: PageData;
+	const { HomePage } = data;
 </script>
 
 <svelte:head>
@@ -8,15 +9,9 @@
 	<meta name="description" content="Каталог курсов" />
 </svelte:head>
 
-<section>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-
-</section>
+{#if HomePage}
+	<svelte:component this={HomePage} />
+{/if}
 
 <style>
 	section {

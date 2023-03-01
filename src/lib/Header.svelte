@@ -40,14 +40,14 @@
 </script>
 
 <header>
-	<a class="corner" href={authorized ? 'learn' : '/'}>
+	<a class="corner" href='/'>
 		<img src={favicon} alt="SvelteKit" />
 		<!-- <span class="app-title">{PUBLIC_TITLE}</span> -->
 	</a>
 	<nav>
 		<ul>
 			{#each publicLinks as link}
-				<li aria-current={$page.url.pathname === link.href}>
+				<li aria-current={$page.url.pathname.includes(link.href)}>
 					<a href={link.href}>
 						<svelte:component this={link.icon} />
 						<span>{link.label}</span>
@@ -56,7 +56,7 @@
 			{/each}
 			{#if authorized}
 				{#each authenticatedLinks as link}
-					<li aria-current={$page.url.pathname === link.href}>
+					<li aria-current={$page.url.pathname.includes(link.href)}>
 						<a href={link.href}>
 							<svelte:component this={link.icon} />
 							<span>{link.label}</span>
@@ -64,7 +64,7 @@
 					</li>
 				{/each}
 			{:else}
-				<li aria-current={$page.url.pathname === '/auth'}>
+				<li aria-current={$page.url.pathname.includes('/auth')}>
 					<a href="/auth">Войти</a>
 				</li>
 			{/if}

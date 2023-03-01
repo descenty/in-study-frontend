@@ -4,7 +4,7 @@
 	import type { IUser } from '../../models';
 	import type { PageData } from './$types';
 	export let data: PageData;
-	const { user } = data;
+	export let { user } = data;
 </script>
 
 <section class="profile">

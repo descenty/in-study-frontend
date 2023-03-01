@@ -9,7 +9,7 @@
 	import Header from '../lib/Header.svelte';
 	import type { LayoutData } from './$types';
 	export let data: LayoutData;
-	export let { authorized } = data;
+	const { authorized } = data;
 </script>
 
 <div class="app">
