@@ -6,6 +6,8 @@
 	import LearnOutline from '~icons/mdi/learn-outline';
 	import LightbulbOnOutline from '~icons/mdi/lightbulb-on-outline';
 	import UserOutline from '~icons/mdi/account-circle-outline';
+	import AboutCircleOutline from '~icons/mdi/about-circle-outline';
+	import { additionalPages } from '$lib/custom_data/settings';
 	import type { ComponentType } from 'svelte';
 	export let authorized = false;
 	interface ILink {
@@ -18,7 +20,8 @@
 			href: '/courses',
 			label: 'Каталог',
 			icon: AppStoreOutline
-		}
+		},
+		...additionalPages
 	];
 	const authenticatedLinks: ILink[] = [
 		{
@@ -40,7 +43,7 @@
 </script>
 
 <header>
-	<a class="corner" href='/'>
+	<a class="corner" href="/">
 		<img src={favicon} alt="SvelteKit" />
 		<!-- <span class="app-title">{PUBLIC_TITLE}</span> -->
 	</a>
@@ -79,7 +82,6 @@
 		justify-content: space-between;
 		height: 75px;
 		align-items: center;
-		background: whitesmoke;
 	}
 
 	.corner {
@@ -131,7 +133,7 @@
 		height: 95%;
 		transition: 0.3s;
 		cursor: pointer;
-		color: rgb(55, 55, 55);
+		color: white;
 		&:hover {
 			color: $primary-color;
 		}

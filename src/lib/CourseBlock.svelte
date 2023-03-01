@@ -43,6 +43,7 @@
 <style lang="scss">
 	@import './styles.scss';
 	.course {
+		background: white;
 		position: relative;
 		display: flex;
 		flex-direction: column;
