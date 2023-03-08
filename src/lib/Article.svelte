@@ -3,9 +3,11 @@
 	import { fade } from 'svelte/transition';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { PUBLIC_BASE_URL } from '$env/static/public';
-	import type { IArticle } from '../models';
+	import type { IArticle, IComment } from '../models';
+	import Loader from './Loader.svelte';
 
 	export let article: IArticle;
+	export let fetchComments: () => Promise<IComment[]>;
 </script>
 
 <section transition:fade>
@@ -17,6 +19,20 @@
 	<div class="comments">
 		<h2>2 комментария</h2>
 		<TextArea placeholder="Написать комментарий..." />
+		<div>
+			{#await fetchComments()}
+				<Loader />
+			{:then comments}
+				{#each comments as comment}
+					<div class="comment">
+						<h3>{comment.author.name}</h3>
+						<p>{comment.content}</p>
+					</div>
+				{/each}
+			{:catch error}
+				<p>error loading comments</p>
+			{/await}
+		</div>
 	</div>
 </section>
 
@@ -58,9 +74,9 @@
 			flex-direction: column;
 			padding-inline: 1em;
 			gap: 2em;
-      h2 {
-        font-size: 1.4em;
-      }
+			h2 {
+				font-size: 1.4em;
+			}
 		}
 	}
 </style>

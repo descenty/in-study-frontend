@@ -49,7 +49,7 @@
 		<a href={`tel:+${phone}`}
 			><span>+7 (915) 576-96-98</span><WhatsAppIcon /> <ViberOutline color="#7C519E" /></a
 		>
-		<img class="green-div" src={favicon} alt="favicon" />
+		<!-- <img class="green-div" src={favicon} alt="favicon" /> -->
 		<div class="green-circle" />
 	</div>
 </section>

@@ -57,6 +57,16 @@ export interface IShortCourse {
 	enrolled?: boolean;
 }
 
+export interface IComment {
+	id: number;
+	content: string;
+	createdAt: Date;
+	author: {
+		id: number;
+		name: string;
+	};
+}
+
 export interface IArticle {
 	id: number;
 	title: string;
