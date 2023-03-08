@@ -2,7 +2,8 @@ import axios from 'axios';
 import { browser } from '$app/environment';
 import { updateUserData } from './stores/UserStore';
 import cookies from 'js-cookie';
-export const baseURL = 'http://localhost:3000/api/';
+
+export const baseURL = 'http://localhost:1337/api/';
 export const axiosInstance = axios.create({
 	baseURL
 });
@@ -52,4 +53,9 @@ export const getNoun = (number: number, one: string, two: string, five: string) 
 		return two;
 	}
 	return five;
+};
+
+export const shorten = (str: string, maxLen: number, separator = ' ') => {
+	if (str.length <= maxLen) return str;
+	return str.substr(0, str.lastIndexOf(separator, maxLen));
 };

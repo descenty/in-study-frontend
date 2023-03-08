@@ -42,8 +42,8 @@
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
-		background: rgb(111, 88, 70);
-		background: linear-gradient(135deg, rgba(111, 88, 70, 1) 0%, rgba(220, 198, 186, 1) 100%);
+		background: rgb(245, 245, 245);
+		/* background: linear-gradient(135deg, rgba(178,146,122,1) 0%, rgba(216,192,179,1) 100%); */
 		.background {
 			position: absolute;
 			width: 99vw;

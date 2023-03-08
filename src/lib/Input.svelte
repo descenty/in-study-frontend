@@ -5,6 +5,8 @@
 	export let name = '';
 	export let label = '';
 	export let value = '';
+	export let placeholder = '...';
+
 </script>
 
 <div class="input-block">
@@ -13,9 +15,9 @@
 		{value}
 		{type}
 		{name}
+		{placeholder}
 		id={name}
 		on:input={(e) => (value = e.target?.value)}
-		placeholder="..."
 	/>
 </div>
 

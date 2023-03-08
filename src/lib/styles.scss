@@ -2,7 +2,6 @@ $primary-color: #6dbd7b;
 
 $secondary-color: #737373;
 
-
 * {
 	margin: 0;
 	padding: 0;
@@ -13,4 +12,12 @@ $secondary-color: #737373;
 a {
 	text-decoration: none;
 	color: inherit;
+}
+
+@mixin round-block {
+	box-shadow: 1px 1px 16px rgba(0, 0, 0, 0.1);
+	padding: 2em;
+	padding-inline: 2.5em;
+	border-radius: 20px;
+	background: white;
 }

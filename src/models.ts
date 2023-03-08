@@ -56,3 +56,16 @@ export interface IShortCourse {
 	users: number;
 	enrolled?: boolean;
 }
+
+export interface IArticle {
+	id: number;
+	title: string;
+	thumbnail: {
+		url: string;
+	};
+	image: {
+		url: string;
+	};
+	content: string;
+	createdAt: Date;
+}

@@ -7,7 +7,7 @@
 	import LightbulbOnOutline from '~icons/mdi/lightbulb-on-outline';
 	import UserOutline from '~icons/mdi/account-circle-outline';
 	import AboutCircleOutline from '~icons/mdi/about-circle-outline';
-	import { additionalPages } from '$lib/custom_data/settings';
+	import ArticleOutline from '~icons/material-symbols/article-outline';
 	import type { ComponentType } from 'svelte';
 	export let authorized = false;
 	interface ILink {
@@ -21,7 +21,16 @@
 			label: 'Каталог',
 			icon: AppStoreOutline
 		},
-		...additionalPages
+		{
+			label: 'Статьи',
+			href: '/articles',
+			icon: ArticleOutline
+		},
+		{
+			label: 'Обо мне',
+			href: '/about',
+			icon: AboutCircleOutline
+		}
 	];
 	const authenticatedLinks: ILink[] = [
 		{
@@ -133,17 +142,26 @@
 		height: 95%;
 		transition: 0.3s;
 		cursor: pointer;
-		color: white;
-		&:hover {
-			color: $primary-color;
-		}
 		.icon {
 			color: red !important;
+		}
+		a {
+			height: 70% !important;
+			border-radius: 10px;
+			padding: 1em;
+			padding-inline: 2em;
+			&:hover {
+				/* color: $primary-color; */
+				background: rgba(255, 255, 255, 0.059);
+			}
 		}
 	}
 
 	li[aria-current='true'] {
-		color: $primary-color;
+		transform: scale(1.05);
+		a {
+			background: rgba(255, 255, 255, 0.059);
+		}
 		::before {
 			--size: 8px;
 			content: '';
@@ -155,7 +173,6 @@
 			border: var(--size) solid transparent;
 			border-top: var(--size) solid $primary-color;
 		}
-		transform: scale(1.05);
 	}
 
 	nav a,
@@ -170,10 +187,6 @@
 		text-transform: capitalize;
 		transition: color 0.05s linear;
 		font-weight: bold;
-	}
-
-	a:hover {
-		color: $primary-color;
 	}
 
 	@media (max-width: 865px) {
